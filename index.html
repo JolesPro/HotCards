@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOT CARDS by Mobi</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+            text-align: center;
+            overflow: hidden;
+        }
+        .game-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .game-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 100vw;
+            padding: 10px;
+            overflow: hidden;
+        }
+        .ad-banner {
+            width: 150px;
+            height: 450px;
+            background-color: #444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            z-index: 0;
+            flex-shrink: 0;
+        }
+        .card-container {
+            perspective: 1000px;
+            margin: 0 80px;
+            position: relative;
+            z-index: 1;
+        }
+        .card {
+            width: 300px;
+            height: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+        }
+        .card-front {
+            background: url('https://via.placeholder.com/300x450/FF0000/FFFFFF?text=HOT+CARDS') no-repeat center center / cover;
+        }
+        .card-back {
+            background: #FF0000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+        .touch-play {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: yellow;
+            z-index: 3;
+        }
+        .drink-penalty {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .game-area {
+                flex-direction: column;
+            }
+            .ad-banner {
+                width: 100%;
+                height: 80px;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-title">HOT CARDS by Mobi</div>
+    
+    <div class="game-area">
+        <div class="ad-banner">Publicidad</div>
+        <div class="card-container" onclick="flipCard()">
+            <div class="card" id="card">
+                <div class="card-face card-front"></div>
+                <div class="card-face card-back" id="question-container">
+                    <div id="question">Presiona para ver tu pregunta</div>
+                    <div class="drink-penalty" id="drink-penalty">Si no quieres hacer ninguno, tómate X tragos.</div>
+                </div>
+            </div>
+            <div class="touch-play">TOCA & JUEGA</div>
+        </div>
+        <div class="ad-banner">Publicidad</div>
+    </div>
+    
+    <script>
+        function getRandomDrinks() {
+            return Math.floor(Math.random() * (8 - 3 + 1)) + 3;
+        }
+        
+        function flipCard() {
+            let card = document.getElementById("card");
+            let questionDiv = document.getElementById("question");
+            let drinkPenaltyDiv = document.getElementById("drink-penalty");
+            
+            const questions = [
+    "¿Cuál ha sido el lugar más extraño donde has tenido sexo? Si no quieres responder, besa a alguien del grupo en la mejilla.",
+    "¿Has fingido un orgasmo? Si no quieres responder, haz un baile sensual frente al grupo.",
+    "¿Cuál es la mayor mentira que has dicho para acostarte con alguien? Si no quieres responder, deja que alguien vea tu galería de fotos por 10 segundos.",
+    "¿Has enviado un nude a alguien que luego te arrepentiste? Si no quieres responder, besa a la persona que el grupo elija en la mano.",
+    "¿Alguna vez has tenido una fantasía con alguien presente en esta mesa? Si no quieres responder, deja que alguien publique una historia en tu Instagram.",
+    "¿Cuántas personas has besado en una sola noche? Si no quieres responder, imita a alguien famoso de manera sensual.",
+    "¿Cuál es la fantasía más extraña que has tenido? Si no quieres responder, haz una demostración de cómo besarías a tu crush en un espejo.",
+    "¿Alguna vez te han descubierto en la cama con alguien? Si no quieres responder, deja que alguien vea tu historial de búsqueda por 10 segundos.",
+    "¿Has besado a más de una persona en una sola fiesta? Si no quieres responder, dale un abrazo a alguien del grupo por 10 segundos.",
+    "¿Has tenido una experiencia con alguien de tu mismo sexo? Si no quieres responder, di quién del grupo te parece más atractivo.",
+    "Envía un mensaje coqueto a tu ex. Si no quieres hacerlo, deja que alguien del grupo elija un emoji y publícalo en tu última foto de perfil.",
+    "Haz contacto visual con la persona que más te atraiga del grupo y dile un cumplido caliente. Si no lo haces, haz 10 sentadillas mientras haces contacto visual con alguien.",
+    "Simula un beso con tu mano frente al grupo. Si no quieres hacerlo, permite que alguien publique un mensaje en tu estado de WhatsApp.",
+    "Dale una nalgada a la persona a tu derecha. Si no lo haces, debes cantar una canción romántica mirando a alguien a los ojos.",
+    "Sopla suavemente el cuello de alguien sin reírte. Si no lo haces, debes enviar un mensaje coqueto a tu último contacto en WhatsApp.",
+    "Llama a alguien y dile que lo/la extrañas. Si no lo haces, haz un video imitando a una celebridad y publícalo en tu historia.",
+    "Si fueras a tener una aventura de una noche con alguien en esta mesa, ¿quién sería? Si no quieres responder, deja que alguien elija tu apodo para el resto del juego.",
+    "Cuenta la historia de tu primer beso. Si no lo haces, deberás abrazar a alguien del grupo por 10 segundos.",
+    "Baila reggaetón de manera sensual con alguien del grupo. Si no lo haces, canta la parte más cursi de una canción romántica en voz alta."
+];
+            
+            if (!card.classList.contains("flipped")) {
+                let randomIndex = Math.floor(Math.random() * questions.length);
+                questionDiv.innerText = questions[randomIndex];
+                drinkPenaltyDiv.innerText = `Si no quieres hacer ninguno, tómate ${getRandomDrinks()} tragos.`;
+            }
+            
+            card.classList.toggle("flipped");
+        }
+    </script>
+</body>
+</html>
