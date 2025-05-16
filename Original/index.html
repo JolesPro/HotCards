@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOT CARDS</title>
+  <link rel="stylesheet" href="misEstilos.css">
+  <script src="misScripts.js"></script>
+</head>
+<body>
+  <div class="game-title">HOT CARDS</div>
+  <div id="register-screen">
+    <div id="player-inputs">
+      <input type="text" class="player-input" placeholder="Nombre del jugador">
+    </div>
+    <button id="add-player-btn" class="add-player-button">Añadir Jugador</button>
+    <button id="start-btn" class="start-button">Comenzar</button>
+  </div>
+
+  <div id="game-area">
+    <div id="turn-display" class="turn-display">Siguiente: </div>
+    <div class="card-container" id="card-container">
+      <div class="card" id="card">
+        <div class="card-face card-front"></div>
+        <div class="card-face card-back">
+          <div id="turn-info">Turno de: </div>
+          <div id="question">Presiona para ver tu pregunta</div>
+          <div id="drink-penalty" class="drink-penalty"></div>
+          <div class="touch-play">TOCA & JUEGA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

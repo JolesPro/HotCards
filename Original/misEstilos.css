@@ -15,7 +15,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
       color: #f00;
-      font-family: fantasy;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
     #register-screen {
       display: flex;
@@ -80,7 +80,7 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
     .card-front {
-      background: url('IMAGENES/PORTADA2.svg') center/cover;
+      background: url('/IMAGENES/PORTADA2.svg') center/cover;
     }
     .card-back {
       background: linear-gradient(135deg, #f00, #000);

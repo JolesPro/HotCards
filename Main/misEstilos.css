@@ -1,0 +1,128 @@
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    .game-title {
+      font-size: 66px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #f00;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .game-area {
+      display: flex ;
+      align-items: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .turn-display {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+    .card-container {
+      perspective: 1000px;
+      width: 150px;
+      height: 225px;
+      margin: 1rem;
+
+    }
+
+    .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor:grab;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    box-sizing: border-box; /* <- crítico para que padding no aumente tamaño */
+    overflow: hidden;       /* <- evita que el contenido desborde */
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    }
+    .card-front {
+      background: url('/IMAGENES/PORTADA2.svg') center/cover;
+    }
+    .card-front-amigos {
+      background: url('/IMAGENES/PORTADA_AMIGOS.svg') center/cover;
+    }
+    .card-front-juntos {
+      background: url('/IMAGENES/PORTADA_JUNTOS.svg') center/cover;
+    }
+    .card-back {
+      background: linear-gradient(135deg, #f00, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transform: rotateY(180deg);
+    }
+      .card-back-amigos {
+      background: linear-gradient(135deg, #17446e, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transform: rotateY(180deg);
+    }
+      .card-back-juntos {
+      background: linear-gradient(135deg,  #603e7a, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transform: rotateY(180deg);
+    }
+
+    .drink-penalty {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.6);
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+    .touch-play {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: yellow;
+    }
+
+    body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
